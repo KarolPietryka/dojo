@@ -5,8 +5,8 @@
 
     <groupId>org.example</groupId>
     <artifactId>KotlinDojo</artifactId>
-    <version>1.0-SNAPSHOT</version>
-    <packaging>jar</packaging>
+    <version>1.0-SNAPSHOT</version><modules><module>solid</module></modules>
+    <packaging>pom</packaging>
 
     <name>org.example KotlinDojo</name>
 
