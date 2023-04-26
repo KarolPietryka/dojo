@@ -5,7 +5,11 @@
 
     <groupId>org.example</groupId>
     <artifactId>KotlinDojo</artifactId>
-    <version>1.0-SNAPSHOT</version><modules><module>solid</module></modules>
+    <version>1.0-SNAPSHOT</version>
+    <modules>
+        <module>solid</module>
+        <module>hib_ut</module>
+    </modules>
     <packaging>pom</packaging>
 
     <name>org.example KotlinDojo</name>
@@ -41,6 +45,43 @@
             <artifactId>kotlinx-serialization-json</artifactId>
             <version>${serialization.version}</version>
         </dependency>
+
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.18.26</version>
+            <scope>provided</scope>
+        </dependency>
+            <dependency>
+                <groupId>org.junit.jupiter</groupId>
+                <artifactId>junit-jupiter-api</artifactId>
+                <version>5.8.1</version>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.junit.jupiter</groupId>
+                <artifactId>junit-jupiter-engine</artifactId>
+                <version>5.8.1</version>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.junit.platform</groupId>
+                <artifactId>junit-platform-launcher</artifactId>
+                <version>1.8.1</version>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.mockito</groupId>
+                <artifactId>mockito-junit-jupiter</artifactId>
+                <version>3.12.4</version>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.assertj</groupId>
+                <artifactId>assertj-core</artifactId>
+                <version>3.21.0</version>
+                <scope>test</scope>
+            </dependency>
     </dependencies>
 
     <build>
@@ -80,7 +121,15 @@
                         <version>${kotlin.version}</version>
                     </dependency>
                 </dependencies>
-            </plugin><plugin><groupId>org.apache.maven.plugins</groupId><artifactId>maven-compiler-plugin</artifactId><configuration><source>8</source><target>8</target></configuration></plugin>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>8</source>
+                    <target>8</target>
+                </configuration>
+            </plugin>
         </plugins>
     </build>
 
