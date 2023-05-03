@@ -2,7 +2,7 @@ package org.kp.dao.movie.listener;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.kp.dao.director.Director;
+import org.kp.dao.director.entity.Director;
 import org.kp.dao.director.DirectorRepository;
 import org.kp.dao.genre.Genre;
 import org.kp.dao.genre.GenreRepository;
@@ -16,7 +16,6 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
 
@@ -39,7 +38,7 @@ class MovieEntityListenerTest {
               .build();
       genres.add(genre);
       Director director = new Director("Name1", 0, new ArrayList<>(), null );
-      MovieEntity movie = new MovieEntity("Title1", director, "1999", genres);
+      MovieEntity movie = new MovieEntity("Title1", director, 1999, genres);
       when(directorRepository.save(any())).thenReturn(director);
       when(genreRepository.save(any())).thenReturn(genre);
       // Invoke the method under test
@@ -50,7 +49,7 @@ class MovieEntityListenerTest {
               Director.builder()
                       .from(director)
                       .numberOfMovies(director.getNumberOfMovies() + 1)
-                      .lastMovieGenres(genre)
+                      .specialityGenre(genre)
                       .build()
       );
 

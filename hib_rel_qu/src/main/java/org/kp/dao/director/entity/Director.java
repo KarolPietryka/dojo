@@ -1,11 +1,13 @@
-package org.kp.dao.director;
+package org.kp.dao.director.entity;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.Builder;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
+import org.kp.dao.director.DirectorEntityListener;
 import org.kp.dao.genre.Genre;
 import org.kp.dao.movie.entity.MovieEntity;
 
@@ -13,6 +15,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
+@EntityListeners(DirectorEntityListener.class)
 @Getter
 @Builder
 @EqualsAndHashCode(exclude = "id")
@@ -29,22 +32,21 @@ public class Director {
     @OneToMany(mappedBy = "director")
     private final List<MovieEntity> movies;
 
-    @NotBlank
-    @Column(name = "last_movie_genre")
-    @ManyToOne
-    private final Genre lastMovieGenres;
-
-    public Director(String name, int numberOfMovies, List<MovieEntity> movies, Genre lastMovieGenres) {
+    @NotNull
+    @ManyToOne(cascade = CascadeType.PERSIST)
+    @JoinColumn(name = "speciality_genre")
+    private final Genre specialityGenre;
+    public Director(String name, int numberOfMovies, List<MovieEntity> movies, Genre specialityGenre) {
         this.name = name;
         this.numberOfMovies = numberOfMovies;
         this.movies = movies;
-        this.lastMovieGenres = lastMovieGenres;
+        this.specialityGenre = specialityGenre;
     }
-    private Director(long id, String name, int numberOfMovies, List<MovieEntity> movies, Genre lastMovieGenres) {
+    private Director(long id, String name, int numberOfMovies, List<MovieEntity> movies, Genre specialityGenre) {
         this.name = name;
         this.numberOfMovies = numberOfMovies;
         this.movies = movies;
-        this.lastMovieGenres = lastMovieGenres;
+        this.specialityGenre = specialityGenre;
     }
 
     public static class DirectorBuilder {
