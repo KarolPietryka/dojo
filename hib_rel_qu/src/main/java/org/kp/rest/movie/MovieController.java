@@ -23,6 +23,6 @@ public class MovieController {
     }
     @GetMapping("/getByGenre")
     ResponseEntity<List<MovieEntity>> getByGenre(@RequestParam String genre){
-        return ResponseEntity.ok().body(movieRepository.findByGenre(genre));
+        return ResponseEntity.ok(movieRepository.findByGenre(genre));
     }
 }

@@ -27,8 +27,6 @@ class MovieControllerIT {
 
     private final MovieRepository movieRepository;
     private final TestRestTemplate restTemplate;
-    private final GenreRepository genreRepository;
-    private final DirectorRepository directorRepository;
 
     @Autowired
     public MovieControllerIT(MovieRepository movieRepository,
@@ -37,8 +35,6 @@ class MovieControllerIT {
                              TestRestTemplate restTemplate) {
         this.restTemplate = restTemplate;
         this.movieRepository = movieRepository;
-        this.genreRepository = genreRepository;
-        this.directorRepository = directorRepository;
     }
 
     @BeforeEach
@@ -49,14 +45,12 @@ class MovieControllerIT {
                 .genre("Action")
                 .directors(new ArrayList<>())
                 .build();
-        //genre = genreRepository.save(genre);
         genres.add(genre);
         Director director = new Director("Name1", 0, new ArrayList<>(), genre );
         MovieEntity movie = new MovieEntity("Title1", director, 1999, genres);
-        //genreRepository.save(genre);
-        //directorRepository.save(director);
+
         movieRepository.save(movie);
-        //movieRepository.save(MovieEntity.builder().from(movie).title("Title2").build());
+        movieRepository.save(MovieEntity.builder().from(movie).title("Title2").build());
     }
     @Test
     void getByGenre() {

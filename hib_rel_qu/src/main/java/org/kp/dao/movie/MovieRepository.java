@@ -8,7 +8,7 @@ import org.springframework.data.repository.query.Param;
 import java.util.List;
 
 public interface MovieRepository extends JpaRepository<MovieEntity, Long> {
-    @Query("SELECT m FROM MovieEntity m WHERE m.genres = :genre")
+    @Query("SELECT m FROM MovieEntity m JOIN m.genres g WHERE g.genre = ?1")
     List<MovieEntity> findByGenre(@Param("genre") String genre);
 
     @Query("SELECT m FROM MovieEntity m WHERE m.releaseYear = :year")
